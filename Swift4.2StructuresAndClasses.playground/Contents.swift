@@ -151,6 +151,13 @@ print("mike room is \(roomOfMike ?? 0)")
 
 let someAddress = Address()
 someAddress.buildingNumber = "29"
-someAddress.street = ""
+someAddress.street = "Acacia Road"
+john.residence?.address = someAddress
+
+if john.residence?.printNumberOfRooms() != nil {
+    print("It was possible to print the number of rooms.")
+} else {
+    print("It was not possible to print the number of rooms.")
+}
 
 
