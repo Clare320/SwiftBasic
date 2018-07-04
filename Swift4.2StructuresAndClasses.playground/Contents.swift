@@ -161,3 +161,8 @@ if john.residence?.printNumberOfRooms() != nil {
 }
 
 
+/// Access Control
+// 权限越低越占主导
+
+
+
