@@ -224,3 +224,25 @@ enum Either<T1, T2> {
     case Left(T1)
     case Right(T2)
 }
+
+/// reduce两种用法
+let array13 = ["hello", "world", "sometimes", "too young", "too sample", "sometimes native"]
+let array14 = array13.reduce("LJ") { (result, value) -> String in
+    return result.appending(value)
+}
+print(array14)
+
+let letters = "abracadabra"
+let letterCount = letters.reduce(into: [:]) { counts, letter in
+//    print("counts:\(counts), letter:\(letter)")
+    return counts[letter, default: 0] += 1
+}
+print("letterCount---->\(letterCount)")
+     // letterCount == ["a": 5, "b": 2, "r": 2, "c": 1, "d": 1]
+
+let dict1 = ["1": "A",
+             "2": "B",
+             "3": "C"
+]
+print(dict1["4", default: "E"])
+

@@ -219,3 +219,36 @@ struct Report: Decodable {
 
 let report = try decoder.decode(Report.self, from: reportData)
 print(report.title)
+
+/// 继承的类使用codable
+/*
+ 子类中如果没有重写init(from:)方法会直接继承父类的实现
+ 子类支持Codable的话 必须实现CodingKey协议和 init(from:)方法
+ */
+class Person: Decodable {
+    var name: String?
+}
+
+class Student: Person {
+    var grade: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case grade
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.grade = try container.decode(Int.self, forKey: .grade)
+        try super.init(from: decoder)
+    }
+}
+
+let studentData = """
+{
+"name": "xiaobai",
+"grade": 1
+}
+""".data(using: .utf8)!
+
+let stu = try decoder.decode(Student.self, from: studentData)
+print(stu.name ?? "decode failure")
