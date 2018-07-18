@@ -246,3 +246,26 @@ let dict1 = ["1": "A",
 ]
 print(dict1["4", default: "E"])
 
+
+/// 嵌套类型
+
+class Inner {
+    var value = 42
+}
+
+struct Outer {
+    var value = 42
+    var inner = Inner()
+}
+
+class Car {
+    var name: String?
+}
+
+var outer = Outer()
+var outer2 = outer
+
+outer.inner.value = 43
+
+print("outer inner value:\(outer.inner.value),outer2 inner value:\(outer2.inner.value)")
+
